@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    /* 
+    2.
+        Add padding of 35px, a border of 15px ,and a margin of 30px
+     */
+    padding: 35px;
+    border: 15px solid #000;
+    margin: 30px;
+
+    /*
+    3.
+        Change the padding, border and margin to be different on the top, bottom, right and left
+    */
+
+    padding: 5px 10px 15px 20px;
+    border-width: 5px 10px 15px 20px;
+    /* top right bottom left*/
+    margin: 5px 10px 15px 20px;
+
+    /*
+    4. Set a height and width 100px  (100px by 100px)
+    */
+    width: 100px;
+    height: 100px;
+
+    /*
+    4A.
+        Without inspecting, what will the width of your box be? Check it out using the inspector. Were you right? Why is this width bigger than the original width you set? 
+    
+    4A Answer:
+        The default box model is "Content Box".
+        Padding + Border are not included in the width you set.
+            Box Width = (Element's Width [value you set] + Padding + Border)
+        In this case:
+            Box Width = 100px + 30px + 30px = 160px
+
+        If we want our box width equal to the width we set, like 100px. We can change the box model to "Border Box".
+        Padding + Border are included in the width you set.
+            Box Width [value you set] = (Content Width + Padding + Border)
+        In this case:
+            Box Width = 40px + 30px + 30px = 100px
+    */
+}
+
+/*
+4B.
+    Add a margin bottom of 25px on .box and a margin-top of 70px on .box2. What will the margin be between the two boxes? Take a guess before you inspect. 
+
+4B Answer:
+    The margin between two boxes will be 70px because of margin collapsing. Two positive margins will combine to become one margin. Its size will be equal to the largest individual margin.
+    
+    In this case, if we set "margin-bottom: 0px", the margin between the two boxes will not be changed.
+*/
+
+.box {
+    margin-bottom: 25px;
+}
+
+.box2 {
+    margin-top: 70px;
+}
+
+
+
+/*
+5.
+    Add a declaration of box-sizing: border-box; to your universal selector (*) What happened to the width of .box1? Why do you think this is useful?
+
+5 Answer:
+    The box width will be the width you set, which Padding + Border are included. I think it is intuitive,user doesn't need to do calculation.
+            Box Width [value you set] = (Content Width + Padding + Border)
+        In this case:
+            Box Width = 40px + 30px + 30px = 100px
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+/* 
+6.
+    Comment out .box.2. Add the following content inside the p.box
+ */
+
+.box2 {
+    display: none;
+}
+
+p.box::after {
+    content:
+        "All HTML elements displayed in the browser are drawn in a box shape. Each ‘box’ has a top, right, bottom and left, a central content area surrounded by an area of padding, then a border, then an outer margin area CSS can target these sides to manipulate elements in various ways (adding padding, margins, borders, images and colours inside the content)";
+}
+
+
+
+
+/* 
+7.
+    Remove the height and width set on .box. Set the height of .container to 100 px and add a background-color: orange. What happened?
+
+7 Answer:
+    The box content spills out of the container
+*/
+
+.box {
+    width: initial;
+    height: initial;
+}
+
+.container {
+    height: 100px;
+    background-color: orange;
+}
+
+
+
+
+/* 
+8.
+    To .container, add the declaration overflow:scroll. What do you notice? Try overflow: hidden. What do you noticed? 
+
+8 Answer:
+    "overflow: scroll;", scroll bar x and scroll bar y appears;
+
+    "overflow: hidden;", scroll bar x and scroll bar y are hidden even through contents are long. And the overflow contents will be hidden as well.
+ */
+
+.container {
+    overflow: scroll;
+    overflow: hidden;
+}
+
+
+
+
+/* 
+9.
+    Comment out height: 30px on .container and remove overflow: hidden. Set a width on container of 50%. Now set a width on box of 25%. What do you notice.
+
+9 Answer:
+    The box width will be resized based on the container width.
+    "overflow: initial;"
+    The scroll bar y shows up when the contents are longer than viewport height; otherwise, it is hidden. And so is scroll bar x.
+ */
+
+.container {
+    height: initial;
+    overflow: initial;
+    width: 50%;
+}
+
+.box {
+    width: 25%;
+}
+
+
+
+
+/* 
+10.
+    Change the width set on container to 300px. Change the width set on  .box to 600px. What happened?
+
+10 Answer:
+    Even the container width is smaller than the box width, the scroll bar x doesn't show up. The scroll bar x shows up when the contents are over the viewport width.
+*/
+
+.container {
+    width: 300px;
+}
+
+.box {
+    width: 600px;
+}
+
+
+
+/*
+11.
+Add overflow scroll back to .container. What do you notice? change the value to hidden. What do you notice?
+
+11 Answer:
+    "overflow: scroll;", scroll bar x and scroll bar y appears.
+
+    "overflow: hidden;", scroll bar x and scroll bar y are hidden even through contents are long. And the overflow contents will be hidden as well.
+*/
+
+.container {
+    overflow: scroll;
+}
+
+.container {
+    overflow: hidden;
+}
